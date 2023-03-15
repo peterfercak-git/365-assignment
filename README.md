@@ -32,6 +32,13 @@ Make the deployment available on port 80 via kubernetes service of a type NodePo
 kubectl expose deployment my-nginx --type=NodePort --port=80 -n my-ns
 ```
 
+Create SSH tunnel to access Minikube dashboard + metrics(new terminal):
+```sh
+minikube addons enable metrics-server
+minikube dashboard --url
+ssh -i my-key.pem -L 8081:localhost:[remote port of minikube dashboard] ubuntu@[public ip]
+```
+
 ## eksctl CLI
 
 Create a simple EKS cluster:
