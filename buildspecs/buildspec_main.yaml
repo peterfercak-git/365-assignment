@@ -15,7 +15,7 @@ phases:
     commands:
       - terraform version
       - "echo ## TERRAFORM INIT : Initialize the Terraform Workspace"
-      - terraform init
+      # - terraform init
 artifacts:
   files:
     - '**/*'

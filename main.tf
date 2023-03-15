@@ -10,14 +10,14 @@ terraform {
 }
 
 provider "aws" {
-    region = "eu-west-2"
+  region = "eu-west-2"
 }
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-0aaa5410833273cfe"
-  instance_type = "t2.medium"
-  user_data = "${file("init.sh")}"
-  key_name= "my-key"
+  ami                    = "ami-0aaa5410833273cfe"
+  instance_type          = "t2.medium"
+  user_data              = file("init.sh")
+  key_name               = "my-key"
   vpc_security_group_ids = [aws_security_group.public.id]
 
   tags = {
@@ -26,8 +26,8 @@ resource "aws_instance" "app_server" {
 }
 
 resource "aws_security_group" "public" {
-    name = "minikube-sg"
-    description = "Public internet access"
+  name        = "minikube-sg"
+  description = "Public internet access"
 }
 
 resource "aws_security_group_rule" "public_out" {
@@ -36,7 +36,7 @@ resource "aws_security_group_rule" "public_out" {
   to_port     = 0
   protocol    = "-1"
   cidr_blocks = ["0.0.0.0/0"]
- 
+
   security_group_id = aws_security_group.public.id
 }
 
@@ -57,7 +57,7 @@ resource "aws_security_group_rule" "node_port" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.public.id
 }
- 
+
 resource "aws_security_group_rule" "public_in_http" {
   type              = "ingress"
   from_port         = 80

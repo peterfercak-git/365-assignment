@@ -15,7 +15,7 @@ phases:
     commands:
       - terraform version
       - ls -l
-      - terraform apply -input=false tfapply
+      # - terraform apply -input=false tfapply
 artifacts:
   files:
     - '**/*'

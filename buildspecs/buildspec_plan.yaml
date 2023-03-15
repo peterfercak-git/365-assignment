@@ -16,7 +16,7 @@ phases:
       - terraform version
       - ls -l
       - "echo ## TERRAFORM PLAN : Generate the Terraform Plan"
-      - terraform plan -out tfapply
+      # - terraform plan -out tfapply
 artifacts:
   files:
     - '**/*'
